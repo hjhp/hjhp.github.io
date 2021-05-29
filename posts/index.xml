@@ -15,7 +15,7 @@
       
       <guid>https://hugopoon.com/posts/setup/</guid>
       <description>Introduction Github Pages, where this site is hosted, recommends Jekyll, but by the name alone it&amp;rsquo;s clear that Hugo is far superior.
-This is based on Rich Youngkin&amp;rsquo;s 2020-08-31 guide
+This is based on Rich Youngkin&amp;rsquo;s 2020-08-31 guide.
 My system  macOS Big Sur 11.3.1 hugo v0.83.1+extended darwin/amd64 BuildDate=unknown  Installation brew install hugo New site setup I use the Smol theme.
 # Make the site SITEDIR=./hugo hugo new site $SITEDIR # Install a theme THEMEZIP=https://github.com/colorchestra/smol/archive/refs/heads/master.zip THEMENAME=smol cd themes curl $THEMEZIP &amp;gt; $THEMENAME.</description>
     </item>
