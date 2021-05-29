@@ -13,7 +13,7 @@
       <pubDate>Sat, 29 May 2021 21:04:00 +0800</pubDate>
       
       <guid>https://hjhp.github.io/cv/</guid>
-      <description>{{ partial &amp;ldquo;cv/experiences&amp;rdquo; . }}</description>
+      <description>{{ partial &amp;ldquo;cv/experiences.html&amp;rdquo; . }}</description>
     </item>
     
     <item>
