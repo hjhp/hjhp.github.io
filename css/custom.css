@@ -1,0 +1,12 @@
+div.asciiart {
+    font-size: 1px;
+    font-family: monospace;
+    width: 530px;
+    background-color: black;
+    color: white;
+    margin: auto;
+}
+
+h1.title {
+    text-align:center;
+}

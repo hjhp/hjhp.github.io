@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Posts on Hugo Poon</title>
-    <link>https://hjhp.github.io/posts/</link>
-    <description>Recent content in Posts on Hugo Poon</description>
+    <title>Posts on Hugo</title>
+    <link>https://hugopoon.com/posts/</link>
+    <description>Recent content in Posts on Hugo</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
-    <lastBuildDate>Sat, 29 May 2021 13:15:51 +0800</lastBuildDate><atom:link href="https://hjhp.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <language>en-gb</language>
+    <copyright>Hugo Poon</copyright>
+    <lastBuildDate>Sat, 29 May 2021 13:15:51 +0800</lastBuildDate><atom:link href="https://hugopoon.com/posts/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Hugo setup</title>
-      <link>https://hjhp.github.io/posts/setup/</link>
+      <link>https://hugopoon.com/posts/setup/</link>
       <pubDate>Sat, 29 May 2021 13:15:51 +0800</pubDate>
       
-      <guid>https://hjhp.github.io/posts/setup/</guid>
+      <guid>https://hugopoon.com/posts/setup/</guid>
       <description>Introduction Github Pages, where this site is hosted, recommends Jekyll, but by the name alone it&amp;rsquo;s clear that Hugo is far superior.
 This is based on Rich Youngkin&amp;rsquo;s 2020-08-31 guide
-My system This was written based on a setup on macOS Big Sur 11.3.1.
-Installation brew install hugo New site setup I used the Smol theme.
+My system  macOS Big Sur 11.3.1 hugo v0.83.1+extended darwin/amd64 BuildDate=unknown  Installation brew install hugo New site setup I use the Smol theme.
 # Make the site SITEDIR=./hugo hugo new site $SITEDIR # Install a theme THEMEZIP=https://github.com/colorchestra/smol/archive/refs/heads/master.zip THEMENAME=smol cd themes curl $THEMEZIP &amp;gt; $THEMENAME.</description>
     </item>
     
