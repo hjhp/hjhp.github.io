@@ -96,7 +96,23 @@ cp $SITEDIR/themes/$THEMENAME/layouts/_default/single.html $SITEDIR/layouts/_def
 </li>
 </ol>
 <p>Since <code>public</code> is inside <code>$SITEDIR</code>, we use a normal repo for <code>$SITEDIR</code>, but a <a href="https://github.blog/2016-02-01-working-with-submodules/">submodule</a> repo for <code>$SITEDIR/public</code>.</p>
-
+<h2 id="adding-the-private-repo">Adding the private repo</h2>
+<p>Configuring the <code>$SITEDIR</code> repo is like any other git repo.</p>
+<pre><code>git init
+git commit -m &quot;first commit&quot;
+git branch -M main
+git remote add origin &lt;sshURL&gt;
+git push -u origin main
+</code></pre><h2 id="adding-the-submodule">Adding the submodule</h2>
+<pre><code>cd $SITEDIR/public
+git init
+git commit -m &quot;first commit&quot;
+git branch -M main
+git remote add origin &lt;sshURL&gt;
+git push -u origin main
+cd $SITEDIR
+git submodule add -b main git@hjhp.github.io.git public
+</code></pre>
 			</div>
 		</article>
 	</main>
