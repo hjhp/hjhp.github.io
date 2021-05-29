@@ -112,7 +112,18 @@ git remote add origin &lt;sshURL&gt;
 git push -u origin main
 cd $SITEDIR
 git submodule add -b main git@hjhp.github.io.git public
-</code></pre>
+</code></pre><h1 id="quirks">Quirks</h1>
+<h2 id="about-page">&ldquo;About&rdquo; page</h2>
+<p>Suppose you have the file <code>$SITEDIR/content/about.md</code> and you want this page linked in your menubar. Then <code>config.toml</code> should contain the below:</p>
+<pre><code># Header
+[menu]
+  [[menu.main]]
+        identifier = &quot;about&quot;
+        name = &quot;About&quot;
+        url = &quot;/about/&quot;
+        weight = 1 
+</code></pre><p>Under <code>hugo server -D</code>, the behaviour is as expected: clicking on &ldquo;About&rdquo; in the menubar loads <code>http://localhost:1313/about/</code> which contains, as body text, the contents of <code>about.md</code>.</p>
+
 			</div>
 		</article>
 	</main>
@@ -124,7 +135,7 @@ git submodule add -b main git@hjhp.github.io.git public
 		<div>
 			<ul>
 				
-				<li><a href="/about/about/">About</a></li>
+				<li><a href="/posts/setup/">Hugo setup</a></li>
 				
 			</ul>
 		</div>
