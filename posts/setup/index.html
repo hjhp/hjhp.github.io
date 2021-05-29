@@ -25,6 +25,8 @@
 			
 			<a href="/about/"><b>About</b></a>.
 			
+			<a href="/cv/"><b>CV</b></a>.
+			
 			<a href="/posts/"><b>Posts</b></a>.
 			
 	</nav>
@@ -112,17 +114,58 @@ git remote add origin &lt;sshURL&gt;
 git push -u origin main
 cd $SITEDIR
 git submodule add -b main git@hjhp.github.io.git public
-</code></pre><h1 id="quirks">Quirks</h1>
-<h2 id="about-page">&ldquo;About&rdquo; page</h2>
-<p>Suppose you have the file <code>$SITEDIR/content/about.md</code> and you want this page linked in your menubar. Then <code>config.toml</code> should contain the below:</p>
-<pre><code># Header
-[menu]
-  [[menu.main]]
-        identifier = &quot;about&quot;
-        name = &quot;About&quot;
-        url = &quot;/about/&quot;
-        weight = 1 
-</code></pre><p>Under <code>hugo server -D</code>, the behaviour is as expected: clicking on &ldquo;About&rdquo; in the menubar loads <code>http://localhost:1313/about/</code> which contains, as body text, the contents of <code>about.md</code>.</p>
+</code></pre><h1 id="generating-a-cv-from-a-json-file">Generating a CV from a JSON file</h1>
+<p>Based on <a href="https://github.com/eddiewebb/json-resume">eddiewebb&rsquo;s guide</a>, but for the <code>smol</code> theme which, unlike the <code>hugo-resume</code> theme, is a more &ldquo;generic&rdquo; setup (i.e. not intended explicitly for CV-style websites).</p>
+<h2 id="data-files">Data files</h2>
+<p>Suppose we have the below in <code>$SITEDIR/data/cv/experiences.json</code>:</p>
+<pre><code>[
+    {
+        &quot;role&quot;:&quot;Head slacker&quot;,
+        &quot;company&quot;:&quot;X&quot;,
+        &quot;summary&quot;:&quot;Didn't do much&quot;,
+        &quot;start&quot;:&quot;March 2020&quot;,
+        &quot;end&quot;:&quot;April 2020&quot;
+    },
+    {
+        &quot;role&quot;:&quot;Head slacker&quot;,
+        &quot;company&quot;:&quot;Y&quot;,
+        &quot;summary&quot;:&quot;Didn't do much&quot;,
+        &quot;start&quot;:&quot;April 2020&quot;,
+        &quot;end&quot;:&quot;May 2020&quot;
+    }
+]
+</code></pre><h2 id="partials">Partials</h2>
+<p>Then we need a <code>for</code> loop to make this data presentable. This is done using partials (<code>$SITEDIR/layouts/partials</code>), for example <code>$SITEDIR/layouts/partials/cv/experiences.html</code>:</p>
+<pre><code>&lt;section id=&quot;cv-experiences&quot;&gt;
+    &lt;header&gt;
+        &lt;h1&gt;Experience&lt;/h1&gt;
+    &lt;/header&gt;
+    &lt;div id=&quot;cv-experiences-content&quot;&gt;
+        {{ range .Site.Data.experience }}
+            &lt;div&gt;
+                &lt;div&gt;
+                    &lt;h2&gt;{{ .role }}&lt;/h2&gt;
+                    &lt;div&gt;{{ .company | markdownify }} | {{ .start }} to {{ .end }}&lt;/div&gt;
+                    &lt;p&gt;{{ .summary | markdownify }}&lt;/p&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+        {{ end }}
+&lt;/div&gt;
+&lt;/section&gt;
+</code></pre><h2 id="cvmd">cv.md</h2>
+<p>To display this, we need <code>$SITEDIR/content/cv.md</code>:</p>
+<pre><code>---
+title: &quot;Curriculum vitae&quot;
+date: 2021-05-29T21:04:00+08:00
+draft: false
+---
+
+{{ partial &quot;cv/experiences&quot; . }}
+</code></pre><p>This seems like a fragmented approach at first glance, but has a few serious advantages:</p>
+<ul>
+<li>The CV&rsquo;s raw data is structured, which makes it possible to use the same data source for e.g. LaTeX output.</li>
+<li>It is possible to have different templates per CV section, e.g. the layout used for &ldquo;experiences&rdquo; may not be appropriate for the &ldquo;skills&rdquo; section.</li>
+</ul>
 
 			</div>
 		</article>
