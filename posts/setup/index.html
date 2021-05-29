@@ -9,7 +9,7 @@
 	
 	<meta name="author" content="Hugo Poon">
 	<link rel="stylesheet" href="/css/style.css">
-	<link rel="stylesheet" href="/css/custom.css?rnd=1622304557">
+	<link rel="stylesheet" href="/css/custom.css?rnd=1622304672">
 	
 </head>
 <body>
@@ -149,7 +149,46 @@ title: &quot;A page&quot;
 <h1 id="custom-404-page">Custom 404 page</h1>
 <pre><code>touch $SITEDIR/layouts/404.html
 </code></pre><p>Note: <code>hugo server</code> will not redirect to the custom 404.html, but Github Pages will.</p>
+<h1 id="easy-deployment">Easy deployment</h1>
+<pre><code>#!/bin/sh
 
+# If a command fails then the deploy stops
+set -e
+
+printf &quot;\033[0;32mDeploying updates to GitHub...\033[0m\n&quot;
+
+# Create commit message
+msg=&quot;rebuilding site $(date)&quot;
+if [ -n &quot;$*&quot; ]; then
+	msg=&quot;$*&quot;
+fi
+
+# Build the project.
+echo &quot;&quot;
+echo &quot;&quot;
+echo &quot;Committing changes to $(pwd)&quot;
+hugo -D
+
+# Go To Public folder
+cd public
+
+# Add 'public' (Github Pages repo) changes to git and commit/push.
+echo &quot;&quot;
+echo &quot;&quot;
+echo &quot;Committing changes to $(pwd)&quot;
+git add .
+git commit -m &quot;$msg&quot;
+git push origin main
+
+# Add this repos changes to git and commit/push. First 'cd' out of public
+cd ..
+echo &quot;&quot;
+echo &quot;&quot;
+echo &quot;Committing changes to $(pwd)&quot;
+git add .
+git commit -m &quot;$msg&quot;
+git push origin main
+</code></pre>
 			</div>
 		</article>
 	</main>
