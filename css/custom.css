@@ -1,10 +1,62 @@
+/*Todo: convert the CSS grid to mobile-first. The straight-css just looks like normal flow; only the media query for large screen introduces the columns. Crucially, cv-date should be left-aligned on mobile but right-aligned on big screens. */
+
+/* Media queries */
+@media screen and (min-width: 768px) {
+    .cv-wrapper {
+        display: grid;
+        grid-template-columns: 2fr 10fr;
+        grid-template-rows: auto;
+        column-gap: 1em;
+        padding-bottom: 1em;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .cv-wrapper {
+        grid-template-columns: 1fr;
+        text-align: left;
+        column-gap: 1em;
+        padding-bottom: 1em;
+    }
+}
+
+/* CSS grid */
+* {
+  box-sizing: border-box; /* Include padding and border in element width and height. */
+}
+
+/* CV 2-column layout */
+.cv-wrapper ul {
+    list-style: inside;
+    padding-left:0;
+}
+.cv-date {
+    width: 2fr;
+    font-weight: bold;
+    /*text-align: right;*/
+}
+.cv-detail {
+    width: 10fr;
+}
+.cv-detail-header {
+    font-weight: bold;
+}
+.cv-institution::after {
+    content:  ": ";
+}
+
+
+/* Specific styling */
 div.asciiart {
-    font-size: 1px;
+    font-size: 0.6px;
     font-family: monospace;
-    width: 530px;
+    max-width: 90%;
     background-color: black;
     color: white;
-    margin: auto;
+    display:  inline-block;
+    margin: 0;
+    padding: 0;
+
 }
 
 h1.title {
