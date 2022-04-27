@@ -1,42 +1,29 @@
 /*Todo: convert the CSS grid to mobile-first. The straight-css just looks like normal flow; only the media query for large screen introduces the columns. Crucially, cv-date should be left-aligned on mobile but right-aligned on big screens. */
 
-/* Media queries */
-@media screen and (min-width: 768px) {
-    .cv-wrapper {
-        display: grid;
-        grid-template-columns: 2fr 10fr;
-        grid-template-rows: auto;
-        column-gap: 1em;
-        padding-bottom: 1em;
-    }
-}
-
-@media screen and (max-width: 768px) {
-    .cv-wrapper {
-        grid-template-columns: 1fr;
-        text-align: left;
-        column-gap: 1em;
-        padding-bottom: 1em;
-    }
-}
-
-/* CSS grid */
+/* General styling */
 * {
   box-sizing: border-box; /* Include padding and border in element width and height. */
 }
 
-/* CV 2-column layout */
+h1.title {
+    text-align:center;
+}
+
+/* CV layout */
+.cv-wrapper {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+    column-gap: 1em;
+    padding-bottom: 1em;
+    text-align: left;
+}
 .cv-wrapper ul {
     list-style: inside;
     padding-left:0;
 }
 .cv-date {
-    width: 2fr;
     font-weight: bold;
-    /*text-align: right;*/
-}
-.cv-detail {
-    width: 10fr;
 }
 .cv-detail-header {
     font-weight: bold;
@@ -45,20 +32,37 @@
     content:  ": ";
 }
 
-
-/* Specific styling */
+/* ASCII art */
 div.asciiart {
-    font-size: 0.6px;
+    font-size: 0.5px;
     font-family: monospace;
-    max-width: 90%;
     background-color: black;
     color: white;
-    display:  inline-block;
-    margin: 0;
+    display: inline-block;
+    margin: auto;
     padding: 0;
-
 }
 
-h1.title {
-    text-align:center;
+/* Media queries */
+/* CSS grid for large screens */
+@media screen and (min-width: 768px) {
+    .cv-wrapper {
+        grid-template-columns: 2fr 10fr;
+        padding-bottom: 0em;
+    }
+    .cv-date {
+        text-align: right;
+    }
+    .cv-date {
+    width: 2fr;
+    }
+    .cv-detail {
+        width: 10fr;
+    }
+}
+
+@media print {
+    h1, h2 {
+        page-break-after: avoid;
+    }
 }
